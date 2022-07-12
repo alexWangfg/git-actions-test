@@ -31,4 +31,4 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
           scp_source: ./github-cd/*
-          scp_target: ~/usr/share/nginx/html
+          scp_target: /usr/share/nginx/html
