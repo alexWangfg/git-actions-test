@@ -12,16 +12,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: git-checkout
-        uses: actions/checkout@v3
-        with:
-          ref: master
-
-      - name: Install
-        run: npm install
-
-      - name: Build
-        run: npm run build
+#      - name: git-checkout
+#        uses: actions/checkout@v3
+#        with:
+#          ref: master
+#
+#      - name: Install
+#        run: npm install
+#
+#      - name: Build
+#        run: npm run build
+      - name: Checkout
+        uses: actions/checkout@v2
 
       - name: Publish
         uses: kostya-ten/ssh-server-deploy@v4
@@ -32,3 +34,7 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           scp_source: ./github-cd/*
           scp_target: /usr/share/nginx/html
+          before_script: |
+            df -h
+          after_script: |
+            whoami
