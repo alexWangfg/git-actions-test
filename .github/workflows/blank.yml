@@ -31,7 +31,8 @@ jobs:
           port: 22
           username: 'root'
           password: ${{ secrets.SERVER_PASSWORD }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+#          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          key: ''
           files: './github-cd/*'
           remote-path: '/usr/share/nginx/html'
           clean: true
