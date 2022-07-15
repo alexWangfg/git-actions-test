@@ -63,8 +63,8 @@ jobs:
           files: './dist/*'  (本地路徑)
           remote-path: '/xxxx/xxxxx/xxxx'  (遠端路徑)
 ```
-註1：[cron 時間設定](https://crontab.guru)
-註2：[Github Marketplace (用於steps下的users)](https://github.com/marketplace?type=actions&query=git+checkout+)
-註3：[ilCollez/ssh-scp-deploy@main 其他參數設定](https://github.com/ilCollez/ssh-scp-deploy)
-註4：為了安全，不將 SSH key 、host等等資訊寫在actions中，可在 settings/secrets 裡添加信息後，在 actions中引用。
+  註1：[cron 時間設定](https://crontab.guru)  
+  註2：[Github Marketplace (用於steps下的users)](https://github.com/marketplace?type=actions&query=git+checkout+)  
+  註3：[ilCollez/ssh-scp-deploy@main 其他參數設定](https://github.com/ilCollez/ssh-scp-deploy)  
+  註4：為了安全，不將 SSH key 、host等等資訊寫在actions中，可在 settings/secrets 裡添加信息後，在 actions中引用。
 ![image](./img/git-action02.png)
