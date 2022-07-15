@@ -34,4 +34,3 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           files: './github-cd/*'
           remote-path: '/usr/share/nginx/html'
-          clean: true
