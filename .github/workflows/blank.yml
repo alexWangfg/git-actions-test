@@ -4,13 +4,16 @@ name: CI
 
 on:
   push:
-    branches:
-      - master
+    # branches:
+    #   - master
+    tags:
+      - '*'
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - run: echo ${{ github.ref }} 
       - name: Checkout
         uses: actions/checkout@v2
 
