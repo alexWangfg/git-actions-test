@@ -1,19 +1,14 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
 on:
   push:
-    # branches:
-    #   - master
-    tags:
-      - '*'
+    branches:
+      - master
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ github.ref }} 
       - name: Checkout
         uses: actions/checkout@v2
 
