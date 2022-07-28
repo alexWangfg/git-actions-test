@@ -51,7 +51,7 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           files: './github-cd/*'
-          remote-path: '/usr/share/nginx/html'
+          remote-path: '/usr/share/nginx/html/test'
 
 #jobs:
 #  build:
