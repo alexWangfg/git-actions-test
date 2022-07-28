@@ -4,55 +4,6 @@ on:
   push:
     branches:
       - master
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Install
-        uses: actions/setup-node@v2
-        with:
-          node-version: 16.13.1
-          cache: 'npm'
-      - run: npm install
-
-      - name: Build
-        run: npm run build
-
-      - name: temporarily save docker
-        uses: actions/upload-artifact@master
-        with:
-          name: github-cd
-          path: github-cd/
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: retrieve saved docker
-        uses: actions/download-artifact@v3
-        with:
-          name: github-cd
-
-      - name: Display structure of downloaded files
-        run: ls -R
-
-      - name: deploy file to server
-        uses: ilCollez/ssh-scp-deploy@main
-        with:
-          host: ${{ secrets.SERVER_IP }}
-          port: 22
-          username: 'root'
-          password: ${{ secrets.SERVER_PASSWORD }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          files: './github-cd/*'
-          remote-path: '/usr/share/nginx/html/test'
-
 #jobs:
 #  build:
 #    runs-on: ubuntu-latest
@@ -70,6 +21,27 @@ jobs:
 #      - name: Build
 #        run: npm run build
 #
+#      - name: temporarily save docker
+#        uses: actions/upload-artifact@master
+#        with:
+#          name: github-cd
+#          path: github-cd/
+#
+#  deploy:
+#    needs: build
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v2
+#
+#      - name: retrieve saved docker
+#        uses: actions/download-artifact@v3
+#        with:
+#          name: github-cd
+#
+#      - name: Display structure of downloaded files
+#        run: ls -R
+#
 #      - name: deploy file to server
 #        uses: ilCollez/ssh-scp-deploy@main
 #        with:
@@ -80,3 +52,31 @@ jobs:
 #          key: ${{ secrets.SSH_PRIVATE_KEY }}
 #          files: './github-cd/*'
 #          remote-path: '/usr/share/nginx/html'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.13.1
+          cache: 'npm'
+      - run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: deploy file to server
+        uses: ilCollez/ssh-scp-deploy@main
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          port: 22
+          username: 'root'
+          password: ${{ secrets.SERVER_PASSWORD }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          files: './github-cd/*'
+          remote-path: '/usr/share/nginx/html'
