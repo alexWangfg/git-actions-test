@@ -68,3 +68,9 @@ jobs:
   註3：[ilCollez/ssh-scp-deploy@main 其他參數設定](https://github.com/ilCollez/ssh-scp-deploy)  
   註4：為了安全，不將 SSH key 、host等等資訊寫在actions中，可在 settings/secrets 裡添加信息後，在 actions中引用。
 ![image](./img/git-action02.png)
+
+## 使用 Github Actions artifact 在 workflow job 之間共享數據
+
+Github actions Artifact 可以用來存儲action生產出來的產物，比如npm build生成的靜態文件。比如dotnet publish 生成的文件等等。當你上傳成功後，後續的流程就可以下載這些文件來使用。
+
+[範例](https://stackoverflow.com/questions/57498605/github-actions-share-workspace-artifacts-between-jobs)
